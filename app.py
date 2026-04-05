@@ -269,7 +269,14 @@ def forecast(flight_number):
         mid_lat = (wps[i][0] + wps[i+1][0]) / 2
         mid_lon = (wps[i][1] + wps[i+1][1]) / 2
         dist = haversine_km(wps[i], wps[i+1])
-        dur = max(1, int((dist / 850) * 60))
+        if i == 0:
+    dur = 20
+elif i == len(wps)-2:
+    dur = 20
+else:
+    cruise_minutes = max(10, f["duration"] - 40)
+    cruise_segments = max(1, len(wps) - 3)
+    dur = max(8, int(cruise_minutes / cruise_segments))
         terrain = get_terrain(mid_lat, mid_lon)
         raw = score_segment(w1, w2, terrain)
         score = round(min(10.0, raw * dampening), 1)
