@@ -316,7 +316,7 @@ document.getElementById("r-verdict").textContent=fc.verdict;document.getElementB
 const strip=document.getElementById("r-strip");strip.innerHTML="";const total=d.segments.reduce((s,sg)=>s+sg.duration_min,0);
 d.segments.forEach(sg=>{const pct=(sg.duration_min/total*100).toFixed(1);const el=document.createElement("div");el.className="ts-seg";el.style.cssText="width:"+pct+"%;background:"+sg.color+";opacity:"+(0.25+sg.score/10*0.75).toFixed(2);strip.appendChild(el)});
 const segsEl=document.getElementById("r-segments");segsEl.innerHTML="";
-d.segments.forEach(sg=>{const row=document.createElement("div");row.className="seg-row";row.innerHTML='<div class="seg-dot" style="background:'+sg.color+'"></div><div class="seg-info"><div class="seg-name">'+sg.name+'</div><div class="seg-detail">'+sg.detail+'</div></div><div class="seg-badge badge-'+sg.class+'">'+sg.score+'/10</div>';segsEl.appendChild(row)});
+(sg.phase==='departure'?'Climbing through turbulence · 20 min':sg.phase==='arrival'?'Descending into destination · 20 min':sg.detail)
 const factorsEl=document.getElementById("r-factors");factorsEl.innerHTML="";
 d.factors.forEach(fac=>{const row=document.createElement("div");row.className="factor-row";row.innerHTML='<div class="factor-left"><span class="factor-icon">'+fac.icon+'</span><span class="factor-name">'+fac.name+'</span></div><div class="factor-bar-wrap"><div class="factor-bar"><div class="factor-bar-fill" style="width:'+fac.pct+'%;background:'+fac.color+'"></div></div><span class="factor-val" style="color:'+fac.color+'">'+fac.label+'</span></div>';factorsEl.appendChild(row)});
 const tipsEl=document.getElementById("r-calmingtips");tipsEl.innerHTML="";
