@@ -241,7 +241,9 @@ def get_flight(flight_number):
         "duration": dur,
         "status": "scheduled",
     }
-
+@app.route("/")
+def index():
+    return jsonify({"status": "ok", "service": "Skyvane API"})
 @app.route("/api/health")
 def health():
     return jsonify({"status": "ok", "version": "1.0.0"})
