@@ -297,6 +297,13 @@ let currentForecast=null,flightHistory=JSON.parse(localStorage.getItem("sv_histo
 (async function init(){try{const r=await fetch(API_BASE+"/api/health");if(r.ok){document.getElementById("mode-tag").textContent="Live Data";document.getElementById("api-status").textContent="✓ Connected to live weather data";document.getElementById("api-status").className="api-status live";return}}catch(e){}document.getElementById("mode-tag").textContent="Demo Mode";document.getElementById("api-status").textContent="Demo mode — backend offline";document.getElementById("api-status").className="api-status mock";renderHistory()})();
 function searchFlight(){const v=document.getElementById("flightInput").value.trim().toUpperCase().replace(/\s/g,"");if(v)loadFlight(v)}
 async function loadFlight(code){showScreen("loading");const fill=document.getElementById("loading-bar-fill");fill.classList.remove("running");void fill.offsetWidth;fill.classList.add("running");const msgs=["Connecting to weather sources…","Pulling flight path data…","Checking PIREP pilot reports…","Analyzing jet stream position…","Translating to plain language…"];let i=0;const msgEl=document.getElementById("loadingMsg");const iv=setInterval(()=>{if(msgs[i])msgEl.textContent=msgs[i++]},420);try{const r=await fetch(API_BASE+"/api/flight/"+code);if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error||"Flight not found")}const data=await r.json();clearInterval(iv);currentForecast=data;saveHistory(code,data);buildResult(data);showScreen("result");updateNav(null)}catch(err){clearInterval(iv);document.getElementById("error-msg").textContent=err.message||"Try: 6E204, AI302, EK509, SG8169, BA140";showScreen("error")}}
+function getSegmentDetail(segment,idx,total){
+var cause=segment.detail?segment.detail.split('·')[0].trim():"Jet stream winds";
+if(segment.phase==="departure")return cause+" · 20 min";
+if(segment.phase==="arrival")return cause+" · 20 min";
+var cruiseMins=segment.duration_min||13;
+return cause+" · "+cruiseMins+" min";
+}
 function buildResult(d){const f=d.flight,fc=d.forecast;
 document.getElementById("r-flightno").textContent=f.number;
 document.getElementById("r-airline").textContent=f.airline;
@@ -313,34 +320,38 @@ document.getElementById("tl-arr").textContent=f.to_iata;
 const sc=document.getElementById("r-scorecard");sc.className="score-card score-"+fc.verdict_class;
 document.getElementById("r-score").textContent=fc.score;document.getElementById("r-score").style.color=fc.color;
 document.getElementById("r-verdict").textContent=fc.verdict;document.getElementById("r-desc").textContent=fc.description;document.getElementById("r-analogy").textContent=fc.analogy;
-const strip=document.getElementById("r-strip");strip.innerHTML="";const total=d.segments.reduce((s,sg)=>s+sg.duration_min,0);
-d.segments.forEach(sg=>{const pct=(sg.duration_min/total*100).toFixed(1);const el=document.createElement("div");el.className="ts-seg";el.style.cssText="width:"+pct+"%;background:"+sg.color+";opacity:"+(0.25+sg.score/10*0.75).toFixed(2);strip.appendChild(el)});
+const strip=document.getElementById("r-strip");strip.innerHTML="";const total=d.segments.reduce((s,x)=>s+x.duration_min,0);
+d.segments.forEach(function(seg){var pct=(seg.duration_min/total*100).toFixed(1);var el=document.createElement("div");el.className="ts-seg";el.style.cssText="width:"+pct+"%;background:"+seg.color+";opacity:"+(0.25+seg.score/10*0.75).toFixed(2);strip.appendChild(el)});
 const segsEl=document.getElementById("r-segments");segsEl.innerHTML="";
-(sg.phase==='departure'?'Climbing through turbulence · 20 min':sg.phase==='arrival'?'Descending into destination · 20 min':sg.detail)
+d.segments.forEach(function(seg,idx){
+var detail=getSegmentDetail(seg,idx,d.segments.length);
+var row=document.createElement("div");row.className="seg-row";
+row.innerHTML='<div class="seg-dot" style="background:'+seg.color+'"></div><div class="seg-info"><div class="seg-name">'+seg.name+'</div><div class="seg-detail">'+detail+'</div></div><div class="seg-badge badge-'+seg.class+'">'+seg.score+'/10</div>';
+segsEl.appendChild(row)});
 const factorsEl=document.getElementById("r-factors");factorsEl.innerHTML="";
-d.factors.forEach(fac=>{const row=document.createElement("div");row.className="factor-row";row.innerHTML='<div class="factor-left"><span class="factor-icon">'+fac.icon+'</span><span class="factor-name">'+fac.name+'</span></div><div class="factor-bar-wrap"><div class="factor-bar"><div class="factor-bar-fill" style="width:'+fac.pct+'%;background:'+fac.color+'"></div></div><span class="factor-val" style="color:'+fac.color+'">'+fac.label+'</span></div>';factorsEl.appendChild(row)});
+d.factors.forEach(function(fac){var row=document.createElement("div");row.className="factor-row";row.innerHTML='<div class="factor-left"><span class="factor-icon">'+fac.icon+'</span><span class="factor-name">'+fac.name+'</span></div><div class="factor-bar-wrap"><div class="factor-bar"><div class="factor-bar-fill" style="width:'+fac.pct+'%;background:'+fac.color+'"></div></div><span class="factor-val" style="color:'+fac.color+'">'+fac.label+'</span></div>';factorsEl.appendChild(row)});
 const tipsEl=document.getElementById("r-calmingtips");tipsEl.innerHTML="";
-d.tips.forEach(tip=>{const el=document.createElement("div");el.className="calm-tip";el.innerHTML='<span class="calm-tip-icon">'+tip.icon+'</span><span>'+tip.text+'</span>';tipsEl.appendChild(el)});
+d.tips.forEach(function(tip){var el=document.createElement("div");el.className="calm-tip";el.innerHTML='<span class="calm-tip-icon">'+tip.icon+'</span><span>'+tip.text+'</span>';tipsEl.appendChild(el)});
 clearIntervals();currentPhases=d.phases||[];
 document.getElementById("pr-pct").textContent="0%";document.getElementById("pr-fill").style.strokeDashoffset="213.6";document.getElementById("pr-fill").style.stroke="var(--accent)";document.getElementById("fp-phase").textContent="Pre-flight";document.getElementById("fp-next").textContent="Tap simulate to begin";document.getElementById("countdown-banner").style.display="none";
-document.getElementById("fb-thanks").style.display="none";document.querySelectorAll(".fb-btn").forEach(b=>b.classList.remove("selected"))}
-function startInflight(){clearIntervals();document.getElementById("pr-pct").textContent="0%";document.getElementById("pr-fill").style.strokeDashoffset="213.6";let pct=0,lastIdx=-1;
-inflightInterval=setInterval(()=>{pct++;if(pct>100){clearInterval(inflightInterval);return}const circ=213.6;document.getElementById("pr-fill").style.strokeDashoffset=circ-(pct/100)*circ;document.getElementById("pr-pct").textContent=pct+"%";
-if(!currentPhases.length)return;let curIdx=0;for(let i=currentPhases.length-1;i>=0;i--){if(pct>=currentPhases[i].pct){curIdx=i;break}}
-if(curIdx!==lastIdx){lastIdx=curIdx;const phase=currentPhases[curIdx];document.getElementById("fp-phase").textContent=phase.phase;document.getElementById("fp-next").textContent=phase.next;const fill=document.getElementById("pr-fill");
+document.getElementById("fb-thanks").style.display="none";document.querySelectorAll(".fb-btn").forEach(function(b){b.classList.remove("selected")})}
+function startInflight(){clearIntervals();document.getElementById("pr-pct").textContent="0%";document.getElementById("pr-fill").style.strokeDashoffset="213.6";var pct=0,lastIdx=-1;
+inflightInterval=setInterval(function(){pct++;if(pct>100){clearInterval(inflightInterval);return}var circ=213.6;document.getElementById("pr-fill").style.strokeDashoffset=circ-(pct/100)*circ;document.getElementById("pr-pct").textContent=pct+"%";
+if(!currentPhases.length)return;var curIdx=0;for(var i=currentPhases.length-1;i>=0;i--){if(pct>=currentPhases[i].pct){curIdx=i;break}}
+if(curIdx!==lastIdx){lastIdx=curIdx;var phase=currentPhases[curIdx];document.getElementById("fp-phase").textContent=phase.phase;document.getElementById("fp-next").textContent=phase.next;var fill=document.getElementById("pr-fill");
 if(phase.countdown){document.getElementById("countdown-banner").style.display="flex";document.getElementById("cb-title").textContent=phase.cb_title||"Turbulence ahead";document.getElementById("cb-sub").textContent=phase.cb_sub||"Seatbelt on";startCountdown((phase.cb_mins||10)*60);fill.style.stroke="var(--chop)"}else{document.getElementById("countdown-banner").style.display="none";if(countdownInterval){clearInterval(countdownInterval);countdownInterval=null}fill.style.stroke=(phase.score||0)>=6?"var(--rough)":"var(--accent)"}}},80)}
-function startCountdown(secs){if(countdownInterval)clearInterval(countdownInterval);let s=secs;const el=document.getElementById("countdown-timer");function fmt(n){const m=Math.floor(n/60),sc=n%60;return m+":"+(sc<10?"0":"")+sc}el.textContent=fmt(s);countdownInterval=setInterval(()=>{s-=3;if(s<=0){el.textContent="Now";clearInterval(countdownInterval);return}el.textContent=fmt(s)},240)}
+function startCountdown(secs){if(countdownInterval)clearInterval(countdownInterval);var s=secs;var el=document.getElementById("countdown-timer");function fmt(n){var m=Math.floor(n/60),sc=n%60;return m+":"+(sc<10?"0":"")+sc}el.textContent=fmt(s);countdownInterval=setInterval(function(){s-=3;if(s<=0){el.textContent="Now";clearInterval(countdownInterval);return}el.textContent=fmt(s)},240)}
 function clearIntervals(){if(inflightInterval){clearInterval(inflightInterval);inflightInterval=null}if(countdownInterval){clearInterval(countdownInterval);countdownInterval=null}}
-function saveHistory(code,data){flightHistory=flightHistory.filter(h=>h.code!==code);flightHistory.unshift({code,from:data.flight.from_iata,to:data.flight.to_iata,airline:data.flight.airline,score:data.forecast.score,color:data.forecast.color,date:new Date().toLocaleDateString("en-IN",{month:"short",day:"numeric"})});flightHistory=flightHistory.slice(0,10);localStorage.setItem("sv_history",JSON.stringify(flightHistory));renderHistory()}
-function renderHistory(){const el=document.getElementById("flight-history");if(!el)return;if(!flightHistory.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:20px 0;">Your searched flights will appear here.</div>';return}el.innerHTML=flightHistory.map(h=>'<div class="past-flight" onclick="loadFlight(\''+h.code+'\')"><div class="pf-icon">✈️</div><div class="pf-info"><div class="pf-route">'+h.from+' → '+h.to+' · '+h.airline+' '+h.code+'</div><div class="pf-date">'+h.date+'</div></div><div class="pf-score" style="color:'+h.color+'">'+h.score+'/10</div></div>').join("")}
-function goBack(){clearIntervals();showScreen("search");document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));document.querySelector(".nav-item:first-child").classList.add("active")}
-function showScreen(name){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById("screen-"+name).classList.add("active")}
+function saveHistory(code,data){flightHistory=flightHistory.filter(function(h){return h.code!==code});flightHistory.unshift({code:code,from:data.flight.from_iata,to:data.flight.to_iata,airline:data.flight.airline,score:data.forecast.score,color:data.forecast.color,date:new Date().toLocaleDateString("en-IN",{month:"short",day:"numeric"})});flightHistory=flightHistory.slice(0,10);localStorage.setItem("sv_history",JSON.stringify(flightHistory));renderHistory()}
+function renderHistory(){var el=document.getElementById("flight-history");if(!el)return;if(!flightHistory.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:20px 0;">Your searched flights will appear here.</div>';return}el.innerHTML=flightHistory.map(function(h){return'<div class="past-flight" onclick="loadFlight(\''+h.code+'\')"><div class="pf-icon">✈️</div><div class="pf-info"><div class="pf-route">'+h.from+' → '+h.to+' · '+h.airline+' '+h.code+'</div><div class="pf-date">'+h.date+'</div></div><div class="pf-score" style="color:'+h.color+'">'+h.score+'/10</div></div>'}).join("")}
+function goBack(){clearIntervals();showScreen("search");document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});document.querySelector(".nav-item:first-child").classList.add("active")}
+function showScreen(name){document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("active")});document.getElementById("screen-"+name).classList.add("active")}
 function showNav(name,el){clearIntervals();if(name==="flights")renderHistory();showScreen(name);updateNav(el)}
-function updateNav(el){document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));if(el)el.classList.add("active")}
-function selectFeedback(btn){document.querySelectorAll(".fb-btn").forEach(b=>b.classList.remove("selected"));btn.classList.add("selected");setTimeout(()=>{document.getElementById("fb-thanks").style.display="block"},400)}
+function updateNav(el){document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});if(el)el.classList.add("active")}
+function selectFeedback(btn){document.querySelectorAll(".fb-btn").forEach(function(b){b.classList.remove("selected")});btn.classList.add("selected");setTimeout(function(){document.getElementById("fb-thanks").style.display="block"},400)}
 function toggleSetting(el){el.classList.toggle("on")}
-function setSens(btn){document.querySelectorAll(".sens-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
-document.getElementById("flightInput").addEventListener("keydown",e=>{if(e.key==="Enter")searchFlight()});
+function setSens(btn){document.querySelectorAll(".sens-btn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active")}
+document.getElementById("flightInput").addEventListener("keydown",function(e){if(e.key==="Enter")searchFlight()});
 </script>
 </body>
-</html>
+  </html>
