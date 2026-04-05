@@ -332,7 +332,9 @@ significant:{scene:"Unsecured items will move. The crew will be seated. You will
 severe:{scene:"Severe turbulence is extremely rare — less than 0.01% of flights. The aircraft structure is not at risk. Your seatbelt is doing its job.",crew:"<strong>Pilot Assessment</strong>Severe turbulence is an extraordinary event. The aircraft will not be damaged. Stay belted and breathe slowly.",color:"calm-moderate",barColor:"#b00000",timelineText:"Severe conditions — extremely rare"}
 };
 
-(async function init(){try{var r=await fetch(API_BASE+"/api/health");if(r.ok){document.getElementById("mode-tag").textContent="Live Data";document.getElementById("api-status").textContent="✓ Connected to live weather data";document.getElementById("api-status").className="api-status live";return}}catch(e){}document.getElementById("mode-tag").textContent="Demo Mode";document.getElementById("api-status").textContent="Demo mode — backend offline";document.getElementById("api-status").className="api-status mock";renderHistory()})();
+document.getElementById("api-status").textContent="✓ Ready";
+document.getElementById("api-status").className="api-status live";
+renderHistory();
 
 function searchFlight(){var v=document.getElementById("flightInput").value.trim().toUpperCase().replace(/\s/g,"");if(v)loadFlight(v)}
 
