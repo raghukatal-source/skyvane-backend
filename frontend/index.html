@@ -308,13 +308,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 </div>
 <script>
 var API="https://web-production-8d08f.up.railway.app";
-var history=JSON.parse(localStorage.getItem("sv_h")||"[]");
+var flightLog=JSON.parse(localStorage.getItem("sv_h")||"[]");
 var iiv=null,civ=null,phases=[];
 var C={
 smooth:{s:"Your flight will feel like sitting in a parked car. The air is stable and quiet. Most passengers won't even notice they're flying.",c:"<strong>Pilot Assessment</strong>Crews consider this one of the smoothest possible conditions. No action required.",cls:"calm-smooth",b:"#3dd68c"},
 light:{s:"Expect the occasional gentle sway — like driving on a slightly uneven road. Your drink might tremble briefly.",c:"<strong>Pilot Assessment</strong>Light chop is completely routine. Pilots file this as a normal flight. Crew will move around the cabin normally.",cls:"calm-light",b:"#f0c060"},
 moderate:{s:"Your tray table items will slide. The person beside you may grip the armrest. The crew will sit down. This is uncomfortable — and completely safe.",c:"<strong>Pilot Assessment</strong>Moderate turbulence is routine for crews. The aircraft is certified for forces far beyond this. Pilots fly routes like this every single day.",cls:"calm-moderate",b:"#f07060"},
-significant:{s:"Unsecured items will move. The crew will be seated. You will feel pushed against your seatbelt. This is rare and within normal aircraft limits.",c:"<strong>Pilot Assessment</strong>Significant turbulence is rare. Aircraft handle far more stress than this. Stay seated and belted — that is all you need to do.",cls:"calm-moderate",b:"#e03030"},
+significant:{s:"Unsecured items will move. The crew will be seated. You will feel pushed against your seatbelt. This is rare and within normal aircraft limits.",c:"<strong>Pilot Assessment</strong>Significant turbulence is rare. Aircraft handle far more stress than this. Stay seated and belted.",cls:"calm-moderate",b:"#e03030"},
 severe:{s:"Severe turbulence is extremely rare — less than 0.01% of flights. The aircraft structure is not at risk. Your seatbelt is doing its job.",c:"<strong>Pilot Assessment</strong>Severe turbulence is extraordinary. The aircraft will not be damaged. Stay belted and breathe slowly.",cls:"calm-moderate",b:"#b00000"}
 };
 renderHistory();
@@ -382,8 +382,17 @@ if(ph.countdown){document.getElementById("countdown-banner").style.display="flex
 else{document.getElementById("countdown-banner").style.display="none";if(civ){clearInterval(civ);civ=null}fl.style.stroke=(ph.score||0)>=6?"var(--rough)":"var(--accent)"}}},80)}
 function startCd(s){if(civ)clearInterval(civ);var el=document.getElementById("countdown-timer");function fmt(n){var m=Math.floor(n/60),sc=n%60;return m+":"+(sc<10?"0":"")+sc}el.textContent=fmt(s);civ=setInterval(function(){s-=3;if(s<=0){el.textContent="Now";clearInterval(civ);return}el.textContent=fmt(s)},240)}
 function clearIv(){if(iiv){clearInterval(iiv);iiv=null}if(civ){clearInterval(civ);civ=null}}
-function saveHistory(code,d){history=history.filter(function(h){return h.code!==code});history.unshift({code:code,from:d.flight.from_iata,to:d.flight.to_iata,airline:d.flight.airline,score:d.forecast.score,color:d.forecast.color,date:new Date().toLocaleDateString("en-IN",{month:"short",day:"numeric"})});history=history.slice(0,10);localStorage.setItem("sv_h",JSON.stringify(history));renderHistory()}
-function renderHistory(){var el=document.getElementById("flight-history");if(!el)return;if(!history.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:20px 0;">Your searched flights will appear here.</div>';return}el.innerHTML=history.map(function(h){return'<div class="past-flight" onclick="loadFlight(\''+h.code+'\')"><div class="pf-icon">✈️</div><div class="pf-info"><div class="pf-route">'+h.from+' → '+h.to+' · '+h.airline+' '+h.code+'</div><div class="pf-date">'+h.date+'</div></div><div class="pf-score" style="color:'+h.color+'">'+h.score+'/10</div></div>'}).join("")}
+function saveHistory(code,d){
+flightLog=flightLog.filter(function(h){return h.code!==code});
+flightLog.unshift({code:code,from:d.flight.from_iata,to:d.flight.to_iata,airline:d.flight.airline,score:d.forecast.score,color:d.forecast.color,date:new Date().toLocaleDateString("en-IN",{month:"short",day:"numeric"})});
+flightLog=flightLog.slice(0,10);
+localStorage.setItem("sv_h",JSON.stringify(flightLog));
+renderHistory()}
+function renderHistory(){
+var el=document.getElementById("flight-history");
+if(!el)return;
+if(!flightLog.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:20px 0;">Your searched flights will appear here.</div>';return}
+el.innerHTML=flightLog.map(function(h){return'<div class="past-flight" onclick="loadFlight(\''+h.code+'\')"><div class="pf-icon">✈️</div><div class="pf-info"><div class="pf-route">'+h.from+' → '+h.to+' · '+h.airline+' '+h.code+'</div><div class="pf-date">'+h.date+'</div></div><div class="pf-score" style="color:'+h.color+'">'+h.score+'/10</div></div>'}).join("")}
 function goBack(){clearIv();showScreen("search");document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});document.querySelector(".nav-item:first-child").classList.add("active")}
 function showScreen(n){document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("active")});document.getElementById("screen-"+n).classList.add("active")}
 function showNav(n,el){clearIv();if(n==="flights")renderHistory();showScreen(n);updateNav(el)}
@@ -392,6 +401,3 @@ function selectFeedback(btn){document.querySelectorAll(".fb-btn").forEach(functi
 function toggleSetting(el){el.classList.toggle("on")}
 function setSens(btn){document.querySelectorAll(".sens-btn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active")}
 document.getElementById("flightInput").addEventListener("keydown",function(e){if(e.key==="Enter")searchFlight()});
-</script>
-</body>
-</html>
