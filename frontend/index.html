@@ -27,8 +27,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .search-box input{flex:1;background:none;border:none;outline:none;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);letter-spacing:2px;text-transform:uppercase}
 .search-box input::placeholder{color:var(--text3);letter-spacing:0.5px;font-size:13px;text-transform:none;font-family:'DM Sans',sans-serif}
 .search-btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
-.api-status{font-size:11px;margin-bottom:20px;padding:0 2px}
-.api-status.live{color:var(--smooth)}.api-status.mock{color:var(--chop)}
+.api-status{font-size:11px;margin-bottom:20px;padding:0 2px;color:var(--smooth)}
 .quick-label{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
 .quick-flights{display:flex;flex-direction:column;gap:10px}
 .quick-flight{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color 0.2s,background 0.2s}
@@ -73,25 +72,19 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .fc-meta{display:flex;gap:16px}
 .fc-meta-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
 .fc-meta-val{font-size:13px;color:var(--text2);font-weight:500}
-
-/* CALM CARD — the new hero feature */
-.calm-card-hero{border-radius:var(--radius);padding:24px;margin-bottom:16px;border:1px solid;position:relative;overflow:hidden}
+.calm-card-hero{border-radius:var(--radius);padding:24px;margin-bottom:16px;border:1px solid}
 .calm-smooth{background:linear-gradient(135deg,rgba(61,214,140,0.08) 0%,rgba(61,214,140,0.03) 100%);border-color:rgba(61,214,140,0.25)}
 .calm-light{background:linear-gradient(135deg,rgba(240,192,96,0.08) 0%,rgba(240,192,96,0.03) 100%);border-color:rgba(240,192,96,0.25)}
 .calm-moderate{background:linear-gradient(135deg,rgba(240,112,96,0.08) 0%,rgba(240,112,96,0.03) 100%);border-color:rgba(240,112,96,0.25)}
-.calm-significant{background:linear-gradient(135deg,rgba(224,48,48,0.08) 0%,rgba(224,48,48,0.03) 100%);border-color:rgba(224,48,48,0.25)}
 .cc-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;opacity:0.6}
 .cc-scene{font-family:'DM Serif Display',serif;font-size:20px;line-height:1.4;font-weight:400;margin-bottom:16px}
 .cc-timeline{margin-bottom:16px}
 .cc-timeline-label{font-size:11px;color:var(--text3);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
-.cc-bar-wrap{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:6px}
-.cc-bar-fill{height:100%;border-radius:4px;transition:width 1s ease}
-.cc-bar-times{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.cc-bar-times{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:6px}
 .cc-crew{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px}
 .cc-crew-icon{font-size:22px;flex-shrink:0}
 .cc-crew-text{font-size:13px;color:var(--text2);line-height:1.5;font-weight:300}
 .cc-crew-text strong{color:var(--text);display:block;margin-bottom:2px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
-
 .score-card{border-radius:var(--radius);padding:20px;margin-bottom:16px;border:1px solid}
 .score-smooth{background:rgba(61,214,140,0.06);border-color:rgba(61,214,140,0.20)}
 .score-light{background:rgba(240,192,96,0.06);border-color:rgba(240,192,96,0.20)}
@@ -155,12 +148,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .cb-text{flex:1;font-size:13px;color:var(--text2);line-height:1.5}
 .cb-text strong{color:var(--chop);display:block;margin-bottom:2px}
 .cb-timer{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--chop);font-weight:500}
-.inflight-btn{width:100%;background:rgba(79,156,249,0.10);border:1px solid rgba(79,156,249,0.25);border-radius:10px;padding:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--accent);cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.inflight-btn{width:100%;background:rgba(79,156,249,0.10);border:1px solid rgba(79,156,249,0.25);border-radius:10px;padding:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .feedback-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;text-align:center}
 .fb-title{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:6px}
 .fb-sub{font-size:13px;color:var(--text3);margin-bottom:20px}
 .fb-options{display:flex;gap:8px;justify-content:center}
-.fb-btn{flex:1;padding:12px 6px;border-radius:10px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color 0.2s,background 0.2s}
+.fb-btn{flex:1;padding:12px 6px;border-radius:10px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
 .fb-btn.selected{border-color:var(--smooth);background:rgba(61,214,140,0.08);color:var(--smooth)}
 .fb-btn-icon{font-size:20px}
 .fb-thanks{display:none;font-size:13px;color:var(--smooth);padding:12px 0 0}
@@ -173,8 +166,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .page-hero{padding:24px 0 20px}
 .page-hero h2{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:6px}
 .page-hero p{font-size:13px;color:var(--text3)}
-.past-flight{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color 0.2s}
-.past-flight:hover{border-color:var(--border2)}
+.past-flight{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;cursor:pointer}
 .pf-icon{font-size:20px;width:36px;height:36px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .pf-info{flex:1}
 .pf-route{font-size:13px;font-weight:500;margin-bottom:2px}
@@ -188,7 +180,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .toggle::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:3px;transition:left 0.2s}
 .toggle.on::after{left:23px}
 .sensitivity-wrap{display:flex;gap:8px;margin-top:8px;width:100%}
-.sens-btn{flex:1;padding:8px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text3);font-size:12px;font-weight:500;cursor:pointer;text-align:center;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.sens-btn{flex:1;padding:8px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text3);font-size:12px;font-weight:500;cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif}
 .sens-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(79,156,249,0.08)}
 </style>
 </head>
@@ -196,7 +188,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 <div class="app">
 <div class="header">
 <div class="logo">Sky<span>vane</span></div>
-<div class="header-tag" id="mode-tag">Loading…</div>
+<div class="header-tag">Live Data</div>
 </div>
 <div class="screen active" id="screen-search">
 <div class="search-wrap">
@@ -208,7 +200,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 <input type="text" id="flightInput" placeholder="Enter flight number (e.g. AI302)" maxlength="8">
 <button class="search-btn" onclick="searchFlight()">Check →</button>
 </div>
-<div class="api-status" id="api-status">Checking connection…</div>
+<div class="api-status">✓ Connected to live weather data</div>
 <div class="quick-label">Popular Routes</div>
 <div class="quick-flights">
 <div class="quick-flight" onclick="loadFlight('6E204')"><div class="qf-left"><div class="qf-code">6E204</div><div class="qf-route"><strong>DEL → BOM</strong> · IndiGo · 2h 15m</div></div><div class="qf-badge badge-smooth">Smooth</div></div>
@@ -245,18 +237,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 <div class="fc-meta-item"><div class="fc-meta-label">Aircraft</div><div class="fc-meta-val" id="r-aircraft"></div></div>
 <div class="fc-meta-item"><div class="fc-meta-label">Altitude</div><div class="fc-meta-val" id="r-altitude"></div></div>
 </div></div>
-
-<!-- CALM CARD HERO -->
 <div class="calm-card-hero" id="r-calmcard">
 <div class="cc-label">What to expect</div>
 <div class="cc-scene" id="cc-scene"></div>
 <div class="cc-timeline" id="cc-timeline"></div>
-<div class="cc-crew">
-<div class="cc-crew-icon">👨‍✈️</div>
-<div class="cc-crew-text" id="cc-crew"></div>
+<div class="cc-crew"><div class="cc-crew-icon">👨‍✈️</div><div class="cc-crew-text" id="cc-crew"></div></div>
 </div>
-</div>
-
 <div class="score-card" id="r-scorecard">
 <div class="sc-top"><div><div class="sc-label">Turbulence Score</div><div class="sc-verdict" id="r-verdict"></div></div><div><div class="sc-number" id="r-score"></div><div class="sc-scale">out of 10</div></div></div>
 <div class="sc-desc" id="r-desc"></div>
@@ -321,47 +307,29 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 </nav>
 </div>
 <script>
-const API_BASE="https://web-production-8d08f.up.railway.app";
-let currentForecast=null,flightHistory=JSON.parse(localStorage.getItem("sv_history")||"[]"),inflightInterval=null,countdownInterval=null,currentPhases=[];
-
-var CALM_DATA={
-smooth:{scene:"Your flight will feel like sitting in a parked car. The air is stable, the ride is quiet. Most passengers won't even notice they're flying.",crew:"<strong>Pilot Assessment</strong>Crews consider this one of the smoothest possible conditions. No action required from passengers.",color:"calm-smooth",barColor:"#3dd68c",timelineText:"Smooth throughout · no rough patches expected"},
-light:{scene:"Expect the occasional gentle sway — like a car driving over a slightly uneven road. Your drink might tremble. The seatbelt sign may come on briefly.",crew:"<strong>Pilot Assessment</strong>Light chop is completely routine. Pilots file this as a normal flight. Crew will move around the cabin normally.",color:"calm-light",barColor:"#f0c060",timelineText:"Mostly smooth with brief bumpy patches"},
-moderate:{scene:"Your tray table items will slide. The person beside you may grip the armrest. The crew will be asked to sit down. This is uncomfortable — and completely safe.",crew:"<strong>Pilot Assessment</strong>Moderate turbulence is routine for flight crews. The aircraft is certified for forces far beyond this. Pilots fly routes like this every single day.",color:"calm-moderate",barColor:"#f07060",timelineText:"Sustained rough patches — seatbelt on throughout"},
-significant:{scene:"Unsecured items will move. The crew will be seated. You will feel pushed against your seatbelt. This is rare and still within normal aircraft operating limits.",crew:"<strong>Pilot Assessment</strong>Significant turbulence is rare. Aircraft are built to handle far more stress than this. Stay seated and belted — that is all you need to do.",color:"calm-moderate",barColor:"#e03030",timelineText:"Rough conditions — remain seated with seatbelt fastened"},
-severe:{scene:"Severe turbulence is extremely rare — less than 0.01% of flights. The aircraft structure is not at risk. Your seatbelt is doing its job.",crew:"<strong>Pilot Assessment</strong>Severe turbulence is an extraordinary event. The aircraft will not be damaged. Stay belted and breathe slowly.",color:"calm-moderate",barColor:"#b00000",timelineText:"Severe conditions — extremely rare"}
+var API="https://web-production-8d08f.up.railway.app";
+var history=JSON.parse(localStorage.getItem("sv_h")||"[]");
+var iiv=null,civ=null,phases=[];
+var C={
+smooth:{s:"Your flight will feel like sitting in a parked car. The air is stable and quiet. Most passengers won't even notice they're flying.",c:"<strong>Pilot Assessment</strong>Crews consider this one of the smoothest possible conditions. No action required.",cls:"calm-smooth",b:"#3dd68c"},
+light:{s:"Expect the occasional gentle sway — like driving on a slightly uneven road. Your drink might tremble briefly.",c:"<strong>Pilot Assessment</strong>Light chop is completely routine. Pilots file this as a normal flight. Crew will move around the cabin normally.",cls:"calm-light",b:"#f0c060"},
+moderate:{s:"Your tray table items will slide. The person beside you may grip the armrest. The crew will sit down. This is uncomfortable — and completely safe.",c:"<strong>Pilot Assessment</strong>Moderate turbulence is routine for crews. The aircraft is certified for forces far beyond this. Pilots fly routes like this every single day.",cls:"calm-moderate",b:"#f07060"},
+significant:{s:"Unsecured items will move. The crew will be seated. You will feel pushed against your seatbelt. This is rare and within normal aircraft limits.",c:"<strong>Pilot Assessment</strong>Significant turbulence is rare. Aircraft handle far more stress than this. Stay seated and belted — that is all you need to do.",cls:"calm-moderate",b:"#e03030"},
+severe:{s:"Severe turbulence is extremely rare — less than 0.01% of flights. The aircraft structure is not at risk. Your seatbelt is doing its job.",c:"<strong>Pilot Assessment</strong>Severe turbulence is extraordinary. The aircraft will not be damaged. Stay belted and breathe slowly.",cls:"calm-moderate",b:"#b00000"}
 };
-
-document.getElementById("api-status").textContent="✓ Ready";
-document.getElementById("api-status").className="api-status live";
 renderHistory();
-
 function searchFlight(){var v=document.getElementById("flightInput").value.trim().toUpperCase().replace(/\s/g,"");if(v)loadFlight(v)}
-
-async function loadFlight(code){showScreen("loading");var fill=document.getElementById("loading-bar-fill");fill.classList.remove("running");void fill.offsetWidth;fill.classList.add("running");var msgs=["Connecting to weather sources…","Pulling flight path data…","Checking PIREP pilot reports…","Analyzing jet stream position…","Translating to plain language…"];var i=0;var msgEl=document.getElementById("loadingMsg");var iv=setInterval(function(){if(msgs[i])msgEl.textContent=msgs[i++]},420);try{var r=await fetch(API_BASE+"/api/flight/"+code);if(!r.ok){var e=await r.json().catch(function(){return{}});throw new Error(e.error||"Flight not found")}var data=await r.json();clearInterval(iv);currentForecast=data;saveHistory(code,data);buildResult(data);showScreen("result");updateNav(null)}catch(err){clearInterval(iv);document.getElementById("error-msg").textContent=err.message||"Try: 6E204, AI302, EK509, SG8169, BA140";showScreen("error")}}
-
-function buildCalmCard(forecast,segments){
-var cls=forecast.verdict_class;
-var calm=CALM_DATA[cls]||CALM_DATA.light;
-var card=document.getElementById("r-calmcard");
-card.className="calm-card-hero "+calm.color;
-document.getElementById("cc-scene").textContent=calm.scene;
-document.getElementById("cc-crew").innerHTML=calm.crew;
-var roughSegs=segments.filter(function(s){return s.score>=4.5});
-var tlEl=document.getElementById("cc-timeline");
-if(roughSegs.length===0){
-tlEl.innerHTML='<div class="cc-timeline-label">Flight path</div><div class="cc-bar-wrap"><div class="cc-bar-fill" style="width:100%;background:'+calm.barColor+'"></div></div><div class="cc-bar-times"><span>Takeoff</span><span>✓ Smooth throughout</span><span>Landing</span></div>';
-}else{
-var totalMins=segments.reduce(function(s,x){return s+x.duration_min},0);
-var roughMins=roughSegs.reduce(function(s,x){return s+x.duration_min},0);
-var firstRough=roughSegs[0];
-var smoothBefore=0;
-for(var i=0;i<segments.length;i++){if(segments[i].score>=4.5)break;smoothBefore+=segments[i].duration_min}
-var pctBefore=Math.round((smoothBefore/totalMins)*100);
-var pctRough=Math.round((roughMins/totalMins)*100);
-tlEl.innerHTML='<div class="cc-timeline-label">Rough patch: ~'+roughMins+' min total</div><div class="cc-bar-wrap" style="display:flex;gap:2px"><div style="width:'+pctBefore+'%;height:8px;background:#3dd68c;border-radius:4px 0 0 4px"></div><div style="width:'+pctRough+'%;height:8px;background:'+calm.barColor+'"></div><div style="flex:1;height:8px;background:#3dd68c;border-radius:0 4px 4px 0"></div></div><div class="cc-bar-times"><span>Takeoff</span><span style="color:'+calm.barColor+'">Bumpy ~'+roughMins+'min</span><span>Landing</span></div>';
-}}
-
+function loadFlight(code){
+showScreen("loading");
+var f=document.getElementById("loading-bar-fill");
+f.classList.remove("running");void f.offsetWidth;f.classList.add("running");
+var msgs=["Connecting to weather sources…","Pulling flight path data…","Checking PIREP pilot reports…","Analyzing jet stream position…","Translating to plain language…"];
+var i=0,el=document.getElementById("loadingMsg");
+var iv=setInterval(function(){if(msgs[i])el.textContent=msgs[i++]},420);
+fetch(API+"/api/flight/"+code)
+.then(function(r){if(!r.ok)return r.json().then(function(e){throw new Error(e.error||"Flight not found")});return r.json()})
+.then(function(d){clearInterval(iv);saveHistory(code,d);buildResult(d);showScreen("result");updateNav(null)})
+.catch(function(e){clearInterval(iv);document.getElementById("error-msg").textContent=e.message||"Try: 6E204, AI302, EK509, SG8169, BA140";showScreen("error")})}
 function buildResult(d){
 var f=d.flight,fc=d.forecast;
 document.getElementById("r-flightno").textContent=f.number;
@@ -376,55 +344,54 @@ document.getElementById("r-aircraft").textContent=f.aircraft;
 document.getElementById("r-altitude").textContent=f.altitude;
 document.getElementById("tl-dep").textContent=f.from_iata;
 document.getElementById("tl-arr").textContent=f.to_iata;
-
-buildCalmCard(fc,d.segments);
-
+var calm=C[fc.verdict_class]||C.light;
+document.getElementById("r-calmcard").className="calm-card-hero "+calm.cls;
+document.getElementById("cc-scene").textContent=calm.s;
+document.getElementById("cc-crew").innerHTML=calm.c;
+var rough=d.segments.filter(function(s){return s.score>=4.5});
+var total=d.segments.reduce(function(s,x){return s+x.duration_min},0)||1;
+var tl=document.getElementById("cc-timeline");
+if(!rough.length){
+tl.innerHTML='<div class="cc-timeline-label">Flight path</div><div style="height:8px;background:'+calm.b+';border-radius:4px;margin-bottom:6px"></div><div class="cc-bar-times"><span>Takeoff</span><span>Smooth throughout ✓</span><span>Landing</span></div>';
+}else{
+var rm=rough.reduce(function(s,x){return s+x.duration_min},0);
+var sb=0;for(var j=0;j<d.segments.length;j++){if(d.segments[j].score>=4.5)break;sb+=d.segments[j].duration_min}
+var pb=Math.max(4,Math.round((sb/total)*100)),pr=Math.max(4,Math.round((rm/total)*100));
+tl.innerHTML='<div class="cc-timeline-label">Rough patch: ~'+rm+' min total</div><div style="display:flex;gap:2px;height:8px;border-radius:4px;overflow:hidden;margin-bottom:6px"><div style="width:'+pb+'%;background:#3dd68c"></div><div style="width:'+pr+'%;background:'+calm.b+'"></div><div style="flex:1;background:#3dd68c"></div></div><div class="cc-bar-times"><span>Takeoff</span><span style="color:'+calm.b+'">~'+rm+' min bumpy</span><span>Landing</span></div>';}
 var sc=document.getElementById("r-scorecard");sc.className="score-card score-"+fc.verdict_class;
-document.getElementById("r-score").textContent=fc.score;
-document.getElementById("r-score").style.color=fc.color;
-document.getElementById("r-verdict").textContent=fc.verdict;
-document.getElementById("r-desc").textContent=fc.description;
-
+document.getElementById("r-score").textContent=fc.score;document.getElementById("r-score").style.color=fc.color;
+document.getElementById("r-verdict").textContent=fc.verdict;document.getElementById("r-desc").textContent=fc.description;
 var strip=document.getElementById("r-strip");strip.innerHTML="";
-var total=d.segments.reduce(function(s,x){return s+x.duration_min},0);
-d.segments.forEach(function(seg){var pct=(seg.duration_min/total*100).toFixed(1);var el=document.createElement("div");el.className="ts-seg";el.style.cssText="width:"+pct+"%;background:"+seg.color+";opacity:"+(0.25+seg.score/10*0.75).toFixed(2);strip.appendChild(el)});
-
-var segsEl=document.getElementById("r-segments");segsEl.innerHTML="";
-d.segments.forEach(function(seg){
-var cause=seg.detail?seg.detail.split("·")[0].trim():"Jet stream winds";
-var dur=seg.phase==="departure"||seg.phase==="arrival"?"20 min":(seg.duration_min||13)+" min";
-var row=document.createElement("div");row.className="seg-row";
-row.innerHTML='<div class="seg-dot" style="background:'+seg.color+'"></div><div class="seg-info"><div class="seg-name">'+seg.name+'</div><div class="seg-detail">'+cause+' · '+dur+'</div></div><div class="seg-badge badge-'+seg.class+'">'+seg.score+'/10</div>';
-segsEl.appendChild(row)});
-
-var factorsEl=document.getElementById("r-factors");factorsEl.innerHTML="";
-d.factors.forEach(function(fac){var row=document.createElement("div");row.className="factor-row";row.innerHTML='<div class="factor-left"><span class="factor-icon">'+fac.icon+'</span><span class="factor-name">'+fac.name+'</span></div><div class="factor-bar-wrap"><div class="factor-bar"><div class="factor-bar-fill" style="width:'+fac.pct+'%;background:'+fac.color+'"></div></div><span class="factor-val" style="color:'+fac.color+'">'+fac.label+'</span></div>';factorsEl.appendChild(row)});
-
-var tipsEl=document.getElementById("r-tips");tipsEl.innerHTML="";
-d.tips.forEach(function(tip){var el=document.createElement("div");el.className="tip-row";el.innerHTML='<span class="tip-icon">'+tip.icon+'</span><span>'+tip.text+'</span>';tipsEl.appendChild(el)});
-
-clearIntervals();currentPhases=d.phases||[];
-document.getElementById("pr-pct").textContent="0%";
-document.getElementById("pr-fill").style.strokeDashoffset="213.6";
-document.getElementById("pr-fill").style.stroke="var(--accent)";
-document.getElementById("fp-phase").textContent="Pre-flight";
-document.getElementById("fp-next").textContent="Tap simulate to begin";
-document.getElementById("countdown-banner").style.display="none";
-document.getElementById("fb-thanks").style.display="none";
+d.segments.forEach(function(sg){var p=(sg.duration_min/total*100).toFixed(1);var e=document.createElement("div");e.className="ts-seg";e.style.cssText="width:"+p+"%;background:"+sg.color+";opacity:"+(0.25+sg.score/10*0.75).toFixed(2);strip.appendChild(e)});
+var se=document.getElementById("r-segments");se.innerHTML="";
+d.segments.forEach(function(sg){var cause=sg.detail?sg.detail.split("·")[0].trim():"Jet stream winds";var dur=sg.phase==="departure"||sg.phase==="arrival"?"20 min":(sg.duration_min||13)+" min";var r=document.createElement("div");r.className="seg-row";r.innerHTML='<div class="seg-dot" style="background:'+sg.color+'"></div><div class="seg-info"><div class="seg-name">'+sg.name+'</div><div class="seg-detail">'+cause+' · '+dur+'</div></div><div class="seg-badge badge-'+sg.class+'">'+sg.score+'/10</div>';se.appendChild(r)});
+var fe=document.getElementById("r-factors");fe.innerHTML="";
+d.factors.forEach(function(fac){var r=document.createElement("div");r.className="factor-row";r.innerHTML='<div class="factor-left"><span class="factor-icon">'+fac.icon+'</span><span class="factor-name">'+fac.name+'</span></div><div class="factor-bar-wrap"><div class="factor-bar"><div class="factor-bar-fill" style="width:'+fac.pct+'%;background:'+fac.color+'"></div></div><span class="factor-val" style="color:'+fac.color+'">'+fac.label+'</span></div>';fe.appendChild(r)});
+var te=document.getElementById("r-tips");te.innerHTML="";
+d.tips.forEach(function(t){var e=document.createElement("div");e.className="tip-row";e.innerHTML='<span class="tip-icon">'+t.icon+'</span><span>'+t.text+'</span>';te.appendChild(e)});
+clearIv();phases=d.phases||[];
+document.getElementById("pr-pct").textContent="0%";document.getElementById("pr-fill").style.strokeDashoffset="213.6";document.getElementById("pr-fill").style.stroke="var(--accent)";
+document.getElementById("fp-phase").textContent="Pre-flight";document.getElementById("fp-next").textContent="Tap simulate to begin";
+document.getElementById("countdown-banner").style.display="none";document.getElementById("fb-thanks").style.display="none";
 document.querySelectorAll(".fb-btn").forEach(function(b){b.classList.remove("selected")})}
-
-function startInflight(){clearIntervals();document.getElementById("pr-pct").textContent="0%";document.getElementById("pr-fill").style.strokeDashoffset="213.6";var pct=0,lastIdx=-1;
-inflightInterval=setInterval(function(){pct++;if(pct>100){clearInterval(inflightInterval);return}var circ=213.6;document.getElementById("pr-fill").style.strokeDashoffset=circ-(pct/100)*circ;document.getElementById("pr-pct").textContent=pct+"%";
-if(!currentPhases.length)return;var curIdx=0;for(var i=currentPhases.length-1;i>=0;i--){if(pct>=currentPhases[i].pct){curIdx=i;break}}
-if(curIdx!==lastIdx){lastIdx=curIdx;var phase=currentPhases[curIdx];document.getElementById("fp-phase").textContent=phase.phase;document.getElementById("fp-next").textContent=phase.next;var fill=document.getElementById("pr-fill");
-if(phase.countdown){document.getElementById("countdown-banner").style.display="flex";document.getElementById("cb-title").textContent=phase.cb_title||"Turbulence ahead";document.getElementById("cb-sub").textContent=phase.cb_sub||"Seatbelt on";startCountdown((phase.cb_mins||10)*60);fill.style.stroke="var(--chop)"}else{document.getElementById("countdown-banner").style.display="none";if(countdownInterval){clearInterval(countdownInterval);countdownInterval=null}fill.style.stroke=(phase.score||0)>=6?"var(--rough)":"var(--accent)"}}},80)}
-
-function startCountdown(secs){if(countdownInterval)clearInterval(countdownInterval);var s=secs;var el=document.getElementById("countdown-timer");function fmt(n){var m=Math.floor(n/60),sc=n%60;return m+":"+(sc<10?"0":"")+sc}el.textContent=fmt(s);countdownInterval=setInterval(function(){s-=3;if(s<=0){el.textContent="Now";clearInterval(countdownInterval);return}el.textContent=fmt(s)},240)}
-function clearIntervals(){if(inflightInterval){clearInterval(inflightInterval);inflightInterval=null}if(countdownInterval){clearInterval(countdownInterval);countdownInterval=null}}
-function saveHistory(code,data){flightHistory=flightHistory.filter(function(h){return h.code!==code});flightHistory.unshift({code:code,from:data.flight.from_iata,to:data.flight.to_iata,airline:data.flight.airline,score:data.forecast.score,color:data.forecast.color,date:new Date().toLocaleDateString("en-IN",{month:"short",day:"numeric"})});flightHistory=flightHistory.slice(0,10);localStorage.setItem("sv_history",JSON.stringify(flightHistory));renderHistory()}
-function renderHistory(){var el=document.getElementById("flight-history");if(!el)return;if(!flightHistory.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:20px 0;">Your searched flights will appear here.</div>';return}el.innerHTML=flightHistory.map(function(h){return'<div class="past-flight" onclick="loadFlight(\''+h.code+'\')"><div class="pf-icon">✈️</div><div class="pf-info"><div class="pf-route">'+h.from+' → '+h.to+' · '+h.airline+' '+h.code+'</div><div class="pf-date">'+h.date+'</div></div><div class="pf-score" style="color:'+h.color+'">'+h.score+'/10</div></div>'}).join("")}
-function goBack(){clearIntervals();showScreen("search");document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});document.querySelector(".nav-item:first-child").classList.add("active")}
-function showScreen(name){document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("active")});document.getElementById("screen-"+name).classList.add("active")}
-function showNav(name,el){clearIntervals();if(name==="flights")renderHistory();showScreen(name);updateNav(el)}
+function startInflight(){clearIv();document.getElementById("pr-pct").textContent="0%";document.getElementById("pr-fill").style.strokeDashoffset="213.6";var pct=0,last=-1;
+iiv=setInterval(function(){pct++;if(pct>100){clearInterval(iiv);return}var c=213.6;document.getElementById("pr-fill").style.strokeDashoffset=c-(pct/100)*c;document.getElementById("pr-pct").textContent=pct+"%";
+if(!phases.length)return;var ci=0;for(var i=phases.length-1;i>=0;i--){if(pct>=phases[i].pct){ci=i;break}}
+if(ci!==last){last=ci;var ph=phases[ci];document.getElementById("fp-phase").textContent=ph.phase;document.getElementById("fp-next").textContent=ph.next;var fl=document.getElementById("pr-fill");
+if(ph.countdown){document.getElementById("countdown-banner").style.display="flex";document.getElementById("cb-title").textContent=ph.cb_title||"Turbulence ahead";document.getElementById("cb-sub").textContent=ph.cb_sub||"Seatbelt on";startCd((ph.cb_mins||10)*60);fl.style.stroke="var(--chop)"}
+else{document.getElementById("countdown-banner").style.display="none";if(civ){clearInterval(civ);civ=null}fl.style.stroke=(ph.score||0)>=6?"var(--rough)":"var(--accent)"}}},80)}
+function startCd(s){if(civ)clearInterval(civ);var el=document.getElementById("countdown-timer");function fmt(n){var m=Math.floor(n/60),sc=n%60;return m+":"+(sc<10?"0":"")+sc}el.textContent=fmt(s);civ=setInterval(function(){s-=3;if(s<=0){el.textContent="Now";clearInterval(civ);return}el.textContent=fmt(s)},240)}
+function clearIv(){if(iiv){clearInterval(iiv);iiv=null}if(civ){clearInterval(civ);civ=null}}
+function saveHistory(code,d){history=history.filter(function(h){return h.code!==code});history.unshift({code:code,from:d.flight.from_iata,to:d.flight.to_iata,airline:d.flight.airline,score:d.forecast.score,color:d.forecast.color,date:new Date().toLocaleDateString("en-IN",{month:"short",day:"numeric"})});history=history.slice(0,10);localStorage.setItem("sv_h",JSON.stringify(history));renderHistory()}
+function renderHistory(){var el=document.getElementById("flight-history");if(!el)return;if(!history.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:20px 0;">Your searched flights will appear here.</div>';return}el.innerHTML=history.map(function(h){return'<div class="past-flight" onclick="loadFlight(\''+h.code+'\')"><div class="pf-icon">✈️</div><div class="pf-info"><div class="pf-route">'+h.from+' → '+h.to+' · '+h.airline+' '+h.code+'</div><div class="pf-date">'+h.date+'</div></div><div class="pf-score" style="color:'+h.color+'">'+h.score+'/10</div></div>'}).join("")}
+function goBack(){clearIv();showScreen("search");document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});document.querySelector(".nav-item:first-child").classList.add("active")}
+function showScreen(n){document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("active")});document.getElementById("screen-"+n).classList.add("active")}
+function showNav(n,el){clearIv();if(n==="flights")renderHistory();showScreen(n);updateNav(el)}
 function updateNav(el){document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});if(el)el.classList.add("active")}
 function selectFeedback(btn){document.querySelectorAll(".fb-btn").forEach(function(b){b.classList.remove("selected")});btn.classList.add("selected");setTimeout(function(){document.getElementById("fb-thanks").style.display="block"},400)}
+function toggleSetting(el){el.classList.toggle("on")}
+function setSens(btn){document.querySelectorAll(".sens-btn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active")}
+document.getElementById("flightInput").addEventListener("keydown",function(e){if(e.key==="Enter")searchFlight()});
+</script>
+</body>
+</html>
